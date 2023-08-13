@@ -20,8 +20,8 @@ const Search = () => {
                 const response = await fetch(url);
                 const responseJson = await response.json();
                 console.log(responseJson.Search)
-                if (responseJson) {
-                    setApiResults(responseJson);
+                if (responseJson.Search) {
+                    setApiResults(responseJson.Search);
                 }
             } catch (error) {
                 console.log(error);
@@ -33,7 +33,7 @@ const Search = () => {
         setLoad(false);
     },[apiResults])
 
-    // console.log('search results',apiResults);
+    console.log('search results',apiResults);
   return (
     <>
         <span className='inline-flex'>

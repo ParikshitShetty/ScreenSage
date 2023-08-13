@@ -2,56 +2,17 @@ import React,{useState,useEffect, Suspense} from 'react'
 import useFetchByTitle from '../hooks/useFetchByTitle';
 import NavBar from '../components/NavBar';
 import { useAtom } from 'jotai';
-import { searchResults,randomResults } from '../jotai/Store';
+import { searchResults,randomResults,movies } from '../jotai/Store';
 import useRandNumGenerator from '../hooks/useRandNumGenerator';
 import Carousel from '../components/Carousel';
 import Loading from '../utilities/Loading';
 
 
-const movieList = ["Harry Potter",
-"Star Wars",
-"The Lord of the Rings",
-"Deadpool",
-"The Fast and the Furious",
-"Dr. No",
-"Jurassic Park",
-"Mission: Impossible",
-"Pirates of the Caribbean",
-"Transformers",
-"X-Men",
-"The Hunger Games",
-"The Chronicles of Narnia",
-"Toy Story",
-"The Matrix",
-"Die Hard",
-"Mad Max: Fury Road",
-"Hobbit",
-"The Terminator",
-"The Godfather",
-"Iron Man",
-"Terminator 2",
-"Hulk",
-"Star Trek",
-"John Wick",
-"Avengers",
-"Avatar",
-"X-Men",
-"Indiana Jones",
-"Back to the Future",
-"Ghostbusters",
-"Planet of the Apes",
-"Alien",
-"Predator",
-"Captain America",
-"The Bourne",
-"Spider-Man",
-"Men in Black",
-"Jurassic Park",
-"Thor"];
 
 const Home = () => {
     const [apiResults, setApiResults] = useAtom(searchResults);
     const [data, setData] = useAtom(randomResults);
+    const [movieList,setMovieList] = useAtom(movies);
 
     const randomNumbers = useRandNumGenerator(movieList.length)
     
