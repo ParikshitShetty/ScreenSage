@@ -8,6 +8,7 @@ const NavBar = () => {
     {name : 'Home', link : '/'},
     {name : 'Movies', link: '/movies' },
     {name : 'Series',link : '/series'},
+    {name : 'Anime',link : '/anime'}
     ])
 
     const  navigator = useNavigate();
@@ -20,8 +21,8 @@ const NavBar = () => {
             <Search></Search>
         </div>
         <div className='flex flex-row justify-evenly w-[48rem]'>
-            {link.map((element)=>(
-              <li className='inline-flex text-lg' onClick={()=>navigator(element.link)}>{element.name}</li>
+            {link.map((element,index)=>(
+              <li className='inline-flex text-lg cursor-pointer' key={index} onClick={()=>navigator(element.link)}>{element.name}</li>
             ))}
         </div>
     </div>

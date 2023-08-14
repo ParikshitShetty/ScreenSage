@@ -14,13 +14,10 @@ const Carousel = () => {
         if (data.length > 0) {
           setRender(true)
         }
-      }, 600);
+      }, 300);
       return () => clearTimeout(timeout)
     },[data])
-    
-  
-    
-    
+
 
   return (
     <>
@@ -44,7 +41,7 @@ const Carousel = () => {
             viewport={{once:true}}
             >
             {data.map((elem,index)=>(
-                <motion.img src={elem.Poster} key={index} id='image' className=''/>
+                <motion.img src={elem.Poster} key={index} id='image' className='mr-5 mt-5 rounded-xl z-10'/>
             ))}
           </motion.div>
         </AnimatePresence>

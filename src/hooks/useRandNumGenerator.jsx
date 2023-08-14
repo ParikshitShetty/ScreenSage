@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 const useRandNumGenerator = (maxLength) => {
     const [random,setRandom] = useState(null);
 
-    const numOfRandomNumbers = 11;
+    const numOfRandomNumbers = 10;
 
      const generateRandomNumber =(length,count) =>{
       const randomNumbers = new Set();

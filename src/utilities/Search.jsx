@@ -33,7 +33,7 @@ const Search = () => {
         setLoad(false);
     },[apiResults])
 
-    console.log('search results',apiResults);
+    // console.log('search results',apiResults);
   return (
     <>
         <span className='inline-flex'>
