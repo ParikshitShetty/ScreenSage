@@ -17,15 +17,15 @@ const Carousel = () => {
       }, 300);
       return () => clearTimeout(timeout)
     },[data])
-
+    console.log(data)
 
   return (
     <>
-     <div className='width-[50rem] overflow-hidden scroll-smooth'>{/*increase width to show content*/}
-     {!render  ? 
+     <div className='width-[50rem] overflow-hidden scroll-smooth z-10'>{/*increase width to show content*/}
+     {/* {!render  ? 
               <div className='flex flex-col place-items-center justify-center h-[28.5rem]'>
                 <Loading/>
-              </div>  :
+              </div>  : */}
       <AnimatePresence onExitComplete={true}>
         <motion.div className='flex flex-row' 
           initial={{x : '0%'}}
@@ -45,7 +45,10 @@ const Carousel = () => {
             ))}
           </motion.div>
         </AnimatePresence>
-      }
+      
+
+      
+      
       </div>
     </>
   )

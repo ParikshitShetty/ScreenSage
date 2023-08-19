@@ -1,43 +1,34 @@
 import React, { useState,useEffect,useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import { useAtom } from 'jotai';
 import { movies } from '../jotai/List';
-
+import Pagination from '../utilities/Pagination';
+import useMovieFetch from '../hooks/useMovieFetch';
 
 const Movies = () => {
-  const [movie,setMovie] = useAtom(movies);
+  const apiResults = useMovieFetch(12);
 
-  const [apiResults,setApiResults] = useState([]);
-  const render = useRef(true);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (render.current) {
-      render.current = false;
-      for (let i = 0; i< 18; i++) {
-        fetch(`http://www.omdbapi.com/?t=${movie[i]}&apikey=faa9a7ed`).
-        then((resp)=>resp.json()).
-        then((respJson)=>setApiResults(
-          (prev)=>[...prev,respJson]))
-      }   
-    }
-  }, [])
+  console.log(apiResults)
   
   return (
     <>
-    <NavBar></NavBar>
-    <div className='flex mt-4 ml-1 mr-1'>
-    <div className='grid grid-cols-9 gap-4' >
-      {apiResults.map((elem,index)=>(
-          <img src={elem.Poster} className='rounded-lg h-52 w-[9.55rem]'
-           alt="" key={index}/>
-        
-      ))}
-      </div>
+    <div className='flex flex-col'>
+    <NavBar/>
+      <main className='grid place-items-start grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4
+       sm:my-8 sm:mx-8'>
+        {apiResults.map((elem,index)=>(
+
+            <div className=' flex flex-col sm:flex-wrap justify-center text-center' key={index}>
+              <div className='rounded-xl overflow-hidden '>
+                <img src={elem.Poster} className='h-80 w-full object-cover transition ease-in-out hover:scale-105 duration-500' alt="" key={index}/>
+              </div>
+              <h3 className='flex-wrap mt-1 text-lg font-sans'>{elem.Title}</h3>
+              <p className='font-mono opacity-60'>{elem.Released}</p>
+            </div>
+        ))}
+      </main>
+      <Pagination/>
     </div>
-      
     </>
   )
 }

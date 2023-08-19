@@ -15,14 +15,14 @@ const NavBar = () => {
 
   return (
     <>
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 md:w-[96rem] h-20">
-    <div className=" flex flex-row items-center w-[48rem">
+    <nav className="bg-white border-gray-200  bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 md:w-[96rem] h-20 opacity-70">
+    <div className=" flex flex-row items-center">
         <div className="hidden w-full md:block mx-4 my-4" id="navbar-default">
-            <Search></Search>
+            <Search/>
         </div>
         <div className='flex flex-row justify-evenly w-[48rem]'>
             {link.map((element,index)=>(
-              <li className='inline-flex text-lg cursor-pointer' key={index} onClick={()=>navigator(element.link)}>{element.name}</li>
+              <li className='inline-flex text-lg cursor-pointer hover:text-blue-700' key={index} onClick={()=>navigator(element.link)}>{element.name}</li>
             ))}
         </div>
     </div>
