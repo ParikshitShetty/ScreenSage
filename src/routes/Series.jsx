@@ -1,11 +1,51 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React,{useState,useEffect,useRef} from 'react'
 import NavBar from '../components/NavBar';
 import useSeriesFetch from '../hooks/useSeriesFetch';
+import Pagination from '../components/Pagination';
+import { series } from '../jotai/List';
+import { useAtom } from 'jotai';
 
 
 const Series = () => {
-  const results = useSeriesFetch(9)
+  const [seriesList] = useAtom(series);
+
+  const [currentPage,setCurrentPage] = useState(1);
+  const [postsPerPage,setPostsPerPage] = useState(12);
+
+  const apiResults = useSeriesFetch(postsPerPage);
+
+  const [results,setResults] = useState([]);
+  const render = useRef(false);
+
+  const getData = () =>{
+    setResults([]);
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+
+    for (let i = firstPostIndex; i < lastPostIndex; i++) {
+      fetch(`http://www.omdbapi.com/?t=${seriesList[i]}&apikey=faa9a7ed`).
+        then((res)=>res.json()).
+        then((respJson)=> setResults((prev)=>[
+          ...prev,respJson
+      ])).catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    }
+  }
+
+  useEffect(()=>{
+    if (currentPage === 2) {
+      render.current = true;
+    }
+    if (render.current) {
+      getData();
+    }
+  },[currentPage])
+  
+  useEffect(()=>{
+    setResults(apiResults);
+  },[apiResults])
+
   return (
     <>
       <div className='flex flex-col'>
@@ -23,6 +63,7 @@ const Series = () => {
             </div>
         ))}
       </main>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       </div>
     </>
   )

@@ -1,10 +1,51 @@
-import React from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import NavBar from '../components/NavBar'
 import useAnimeFetch from '../hooks/useAnimeFetch'
+import Pagination from '../components/Pagination'
+import { useAtom } from 'jotai'
+import { animeList } from '../jotai/List'
 
 
 const Anime = () => {
-  const results = useAnimeFetch(10);
+  const [anime] = useAtom(animeList);
+
+  const [currentPage,setCurrentPage] = useState(1);
+  const [postsPerPage,setPostsPerPage] = useState(12);
+
+  const apiResults = useAnimeFetch(postsPerPage);
+
+  const [results,setResults] = useState([]);
+  const render = useRef(false);
+
+  const getData = () =>{
+    setResults([]);
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+
+    for (let i = firstPostIndex; i < lastPostIndex; i++) {
+      fetch(`http://www.omdbapi.com/?t=${anime[i]}&apikey=faa9a7ed`).
+        then((res)=>res.json()).
+        then((respJson)=> setResults((prev)=>[
+          ...prev,respJson
+      ])).catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    }
+  }
+
+  useEffect(()=>{
+    if (currentPage === 2) {
+      render.current = true;
+    }
+    if (render.current) {
+      getData();
+    }
+  },[currentPage])
+  
+  useEffect(()=>{
+    setResults(apiResults);
+  },[apiResults])
+
   return (
     <>
       <div className='flex flex-col'>
@@ -21,6 +62,7 @@ const Anime = () => {
             </div>
         ))}
       </main>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       </div>
     </>
   )

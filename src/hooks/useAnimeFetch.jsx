@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 import React,{useState,useEffect,useRef} from 'react'
 import { animeList } from '../jotai/List';
 
-const useAnimeFetch = () => {
+const useAnimeFetch = (count) => {
     const [anime,setAnime] = useAtom(animeList);
 
     const [animeResults,setAnimeResults] = useState([]);
@@ -11,7 +11,7 @@ const useAnimeFetch = () => {
     useEffect(() => {
         if(render.current){//useffect mounts and dismounts twice because of Strictmode so we need a condition
           render.current = false;
-          for (let i = 0; i < 9; i++) {
+          for (let i = 0; i < count; i++) {
             fetch(`http://www.omdbapi.com/?t=${anime[i]}&apikey=faa9a7ed`).
               then((res)=>res.json()).
               then((respJson)=> setAnimeResults((prev)=>[
@@ -22,7 +22,7 @@ const useAnimeFetch = () => {
           }
         }
       },[])
+      
   return animeResults;
 }
-
 export default useAnimeFetch

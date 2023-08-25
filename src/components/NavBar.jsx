@@ -7,7 +7,7 @@ const NavBar = () => {
   const [link,setLink] = useState([
     {name : 'Home', link : '/'},
     {name : 'Movies', link: '/movies' },
-    {name : 'Series',link : '/series'},
+    {name : 'TV Shows',link : '/series'},
     {name : 'Anime',link : '/anime'}
     ])
 

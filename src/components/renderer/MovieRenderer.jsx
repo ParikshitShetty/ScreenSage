@@ -1,20 +1,17 @@
-import { useAtom } from 'jotai'
-import React, {useState,useEffect,useRef} from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { movies } from '../jotai/List';
-import useMovieFetch from '../hooks/useMovieFetch';
+import useMovieFetch from '../../hooks/useMovieFetch';
 
 
-const MovieRenderer = () => {
-  const [movieList,setMovieList] = useAtom(movies);
-
-  const movieResults = useMovieFetch(9)
+const MovieRenderer = ({open}) => {
+  const movieResults = useMovieFetch(6);
 
   const navigate = useNavigate();
 
   return (
     <>
-    <div className='flex justify-between place-items-center h-12 ml-5 mr-5 z-10'>
+    <div>
+    <div className='flex justify-between items-center h-12 mx-9 z-10'>
       <span className='text-base font-semibold '>Movies</span>
         <span className='flex justify-center rounded-2xl hover:text-lime-500 outline outline-2 outline-stone-100 hover:outline-lime-500 w-36 p-[0.20rem] cursor-pointer'
           onClick={()=>navigate('/movies')}>
@@ -24,12 +21,14 @@ const MovieRenderer = () => {
             </svg>
       </span>
     </div>
-    <div className='flex flex-row z-10'>
+    <div className='flex flex-row justify-evenly items-center z-10 h-[19rem]'>
       {movieResults.map((movie,index)=>(
-        <div className='rounded-xl ml-4 mt-2 overflow-hidden' key={index}>
-          <img src={movie.Poster} alt=""  className='h-52 w-[9.55rem] transition ease-in-out hover:scale-110 duration-500'/>
+        <div className='rounded-xl overflow-hidden' key={index}>
+          <img src={movie.Poster} onClick={()=>open(movie)}
+          alt=""  className='h-72 w-48 transition ease-in-out hover:scale-105 active:scale-95 duration-500'/>
         </div>
       ))}
+    </div>
     </div>
     </>
   )

@@ -2,21 +2,56 @@ import React, { useState,useEffect,useRef } from 'react'
 import NavBar from '../components/NavBar';
 import { useAtom } from 'jotai';
 import { movies } from '../jotai/List';
-import Pagination from '../utilities/Pagination';
+import Pagination from '../components/Pagination';
 import useMovieFetch from '../hooks/useMovieFetch';
 
 const Movies = () => {
-  const apiResults = useMovieFetch(12);
+  const [movieList] = useAtom(movies);
 
-  console.log(apiResults)
+  const [currentPage,setCurrentPage] = useState(1);
+  const [postsPerPage,setPostsPerPage] = useState(12);
+
+  const apiResults = useMovieFetch(postsPerPage);
+
+  const [results,setResults] = useState([]);
+  const render = useRef(false);
+
+  const getData = () =>{
+    setResults([]);
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+
+    for (let i = firstPostIndex; i < lastPostIndex; i++) {
+      fetch(`http://www.omdbapi.com/?t=${movieList[i]}&apikey=faa9a7ed`).
+        then((res)=>res.json()).
+        then((respJson)=> setResults((prev)=>[
+          ...prev,respJson
+      ])).catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    }
+  }
+
+  useEffect(()=>{
+    if (currentPage === 2) {
+      render.current = true;
+    }
+    if (render.current) {
+      getData();
+    }
+  },[currentPage])
+  
+  useEffect(()=>{
+    setResults(apiResults);
+  },[apiResults])
   
   return (
     <>
-    <div className='flex flex-col'>
+    <div className='flex flex-col h-[190vh]'>
     <NavBar/>
       <main className='grid place-items-start grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4
        sm:my-8 sm:mx-8'>
-        {apiResults.map((elem,index)=>(
+        {results.map((elem,index)=>(
 
             <div className=' flex flex-col sm:flex-wrap justify-center text-center' key={index}>
               <div className='rounded-xl overflow-hidden '>
@@ -27,10 +62,11 @@ const Movies = () => {
             </div>
         ))}
       </main>
-      <Pagination/>
+      {results.length > 0 &&
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+      }
     </div>
     </>
   )
 }
-
 export default Movies

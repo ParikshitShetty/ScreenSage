@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai'
 import React,{useEffect, useState} from 'react'
 import {searchResults} from '../jotai/Store'
+import { motion } from 'framer-motion'
 
 const Search = () => {
     const [apiResults,setApiResults] = useAtom(searchResults);
@@ -33,7 +34,6 @@ const Search = () => {
         setLoad(false);
     },[apiResults])
 
-    // console.log('search results',apiResults);
   return (
     <>
         <span className='inline-flex'>
@@ -42,7 +42,7 @@ const Search = () => {
             value={term} 
             onChange={handleSearch}/>
 
-            <button type="submit" className=" h-full px-2.5 py-[0.85rem] text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700" onClick={getData} disabled={load}>
+            <motion.button type="submit" className=" h-full px-2.5 py-[0.85rem] text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700" onClick={getData} disabled={load} whileTap={{scale: 0.9}}>
             {load ?
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
@@ -52,7 +52,7 @@ const Search = () => {
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
             }
-            </button>
+            </motion.button>
         </span>
     </>
   )

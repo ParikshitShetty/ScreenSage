@@ -1,23 +1,16 @@
-import { useAtom } from 'jotai'
-import React,{useState,useEffect,useRef} from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { animeList } from '../jotai/List';
-import useAnimeFetch from '../hooks/useAnimeFetch';
+import useAnimeFetch from '../../hooks/useAnimeFetch';
 
 
-const AnimeRenderer = () => {
-    const [anime,setAnime] = useAtom(animeList);
-
-    const animeResults = useAnimeFetch(9) 
+const AnimeRenderer = ({open}) => {
+    const animeResults = useAnimeFetch(6);
     
     const navigate = useNavigate();
 
-   
-      // console.log(animeResults)
-
   return (
     <>
-    <div className='flex justify-between place-items-center h-12 ml-5 mr-5 '>
+    <div className='flex justify-between place-items-center h-12 mx-9'>
           <span className='text-base font-semibold '>Anime</span>
           <span className='flex justify-center rounded-2xl hover:text-lime-500 outline outline-2 outline-stone-100 hover:outline-lime-500 w-36 p-[0.20rem] cursor-pointer'
             onClick={()=>navigate('/anime')}>
@@ -27,15 +20,15 @@ const AnimeRenderer = () => {
             </svg>
           </span>
     </div>
-        <div className='flex flex-row'>
+        <div className='flex flex-row justify-evenly items-center h-[19rem]'>
         {animeResults.map((item,index)=>(
-            <div className='rounded ml-4 mt-2 overflow-hidden' key={index} >
-              <img src={item.Poster} alt="" className='h-52 w-[9.55rem] transition ease-in-out hover:scale-110 duration-500'/>
+            <div className='rounded overflow-hidden' key={index} >
+              <img src={item.Poster} onClick={()=>open(item)}
+              alt="" className='h-72 w-48 transition ease-in-out hover:scale-110 active:scale-95 duration-500'/>
             </div>
         ))}
         </div>
     </>
   )
 }
-
 export default AnimeRenderer
