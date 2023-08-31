@@ -3,7 +3,7 @@ import React,{useState,useEffect,useRef} from 'react'
 import { animeList } from '../jotai/List';
 
 const useAnimeFetch = (count) => {
-    const [anime,setAnime] = useAtom(animeList);
+    const [anime] = useAtom(animeList);
 
     const [animeResults,setAnimeResults] = useState([]);
     const render = useRef(true);

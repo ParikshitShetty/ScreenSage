@@ -8,7 +8,8 @@ export default {
     extend: {  
       backgroundImage: {
         'got': "url(http://m.gettywallpapers.com/wp-content/uploads/2020/04/Game-of-Thrones-Wallpaper-For-PC.jpg)",
-        'footer-texture': "url(https://r4.wallpaperflare.com/wallpaper/296/400/37/movie-avengers-infinity-war-black-panther-movie-black-widow-wallpaper-49f0f89d41ba3debf667380fb061667d.jpg)"
+        'avengers': "url(https://r4.wallpaperflare.com/wallpaper/296/400/37/movie-avengers-infinity-war-black-panther-movie-black-widow-wallpaper-49f0f89d41ba3debf667380fb061667d.jpg)",
+        'back' :"url(https://m.media-amazon.com/images/M/MV5BNWNmYzQ1ZWUtYTQ3ZS00Y2UwLTlkMDctZThlOTJkMGJiNzBiXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_SX300.jpg)"
       },
       backgroundSize:{
         'auto': 'auto',

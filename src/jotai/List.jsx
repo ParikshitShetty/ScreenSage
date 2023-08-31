@@ -148,4 +148,6 @@ export const animeList = atom(["Attack on Titan",
     "That Time I Got Reincarnated as a Slime",
     "Log Horizon",
     "The Rising of the Shield Hero"
-  ])
+  ]);
+
+export const latest =  atom(["Transformers: Rise of the Beasts","Ant-Man and the Wasp: Quantumania","The Flash","Spider-Man: Across the Spider-Verse","No Hard Feelings","John Wick: Chapter 4",]);

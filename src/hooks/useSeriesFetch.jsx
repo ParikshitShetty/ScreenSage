@@ -4,7 +4,7 @@ import { series } from '../jotai/List';
 
 
 const useSeriesFetch = (length) => {
-    const [tvShows,setTvShows] = useAtom(series);
+    const [tvShows] = useAtom(series);
 
     const [seriesResults, setSeriesResults] = useState([]);
     const render = useRef(true);
