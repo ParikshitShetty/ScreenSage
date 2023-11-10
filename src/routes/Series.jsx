@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination';
 import RouteRenderer from '../components/renderer/RouteRenderer';
 import Loading from '../utilities/Loading';
 
-
+//For individual details and poster fetchings for episodes
 const Series = () => {
   const [seriesList] = useAtom(series);
 

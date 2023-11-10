@@ -3,6 +3,7 @@ import React from 'react'
 
 
 const Backdrop = ({ onClick, children}) => {
+  console.log(children)
   return (
     <motion.div
     className='fixed top-0 left-0 h-full w-full z-10 bg-[#000000e1] flex justify-center items-center'

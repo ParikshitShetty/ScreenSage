@@ -19,10 +19,12 @@ const Home = () => {
 
     const [modalItem,setModalItem] =  useAtom(modalObj);
 
-    const latest = useLatestFetch(6);
-    const movies = useMovieFetch(6);
-    const series = useSeriesFetch(6);
-    const anime = useAnimeFetch(6);
+    const posts = 6;
+
+    const latest = useLatestFetch(posts);
+    const movies = useMovieFetch(posts);
+    const series = useSeriesFetch(posts,);
+    const anime = useAnimeFetch(posts);
 
     const res = [
       {arr : latest, name : "Latest", link : '/movies'},
@@ -42,14 +44,12 @@ const Home = () => {
     } 
 
     useEffect(() => {
-      if (latest.length === 6 && movies.length === 6 && series.length === 6 && anime.length === 6) {
-        setRender(true);
-      }
-    }, [anime])
+        setRender(latest.length === posts && movies.length === posts && series.length === posts && anime.length === posts);
+    }, [latest,movies,series,anime]);
 
   return (
     <>
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center pb-4'>
           {render ?
           <Suspense fallback={<Loading/>}>
             <Carousel/>
