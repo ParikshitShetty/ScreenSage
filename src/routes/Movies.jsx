@@ -23,7 +23,7 @@ const Movies = () => {
     const firstPostIndex = lastPostIndex - postsPerPage;
 
     for (let i = firstPostIndex; i < lastPostIndex; i++) {
-      fetch(`http://www.omdbapi.com/?t=${movieList[i]}&apikey=faa9a7ed`).
+      fetch(`${import.meta.env.VITE_TITLE}${movieList[i]}&apikey=${import.meta.env.VITE_KEY}`).
         then((res)=>res.json()).
         then((respJson)=> setResults((prev)=>[
           ...prev,respJson

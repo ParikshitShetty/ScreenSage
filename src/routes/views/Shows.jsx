@@ -11,7 +11,7 @@ export default function Shows() {
   const [episode,setEpisode] = useState(1);
 
   useEffect(()=>{
-    fetch(`http://www.omdbapi.com/?t=${title}&Season=${season}&episode=${episode}&apikey=faa9a7ed`).
+    fetch(`${import.meta.env.VITE_TITLE}${title}&Season=${season}&episode=${episode}&apikey=${import.meta.env.VITE_KEY}`).
     then(res => res.json()).
     then(res => setApiResult(res))
   },[season,episode])

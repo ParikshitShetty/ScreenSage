@@ -24,7 +24,7 @@ const Series = () => {
     const firstPostIndex = lastPostIndex - postsPerPage;
 
     for (let i = firstPostIndex; i < lastPostIndex; i++) {
-      fetch(`http://www.omdbapi.com/?t=${seriesList[i]}&apikey=faa9a7ed`).
+      fetch(`${import.meta.env.VITE_TITLE}${seriesList[i]}&apikey=${import.meta.env.VITE_KEY}`).
         then((res)=>res.json()).
         then((respJson)=> setResults((prev)=>[
           ...prev,respJson

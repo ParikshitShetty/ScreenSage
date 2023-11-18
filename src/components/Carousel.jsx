@@ -21,7 +21,7 @@ const Carousel = () => {
     useEffect(()=>{
       if(randomNumbers !== null && request.current){
         for (let i = 0; i < randomNumbers.length; i++) {
-        fetch(`http://www.omdbapi.com/?t=${movieList[randomNumbers[i]]}&plot=full&apikey=faa9a7ed`).
+          fetch(`${import.meta.env.VITE_TITLE}${movieList[randomNumbers[i]]}&plot=full&apikey=${import.meta.env.VITE_KEY}`).
           then((res)=>res.json()).
           then((respJson)=> setData((prev)=>[
             ...prev,respJson

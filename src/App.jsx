@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes,Route} from 'react-router-dom'
 
 import NavBar from './components/NavBar'
@@ -15,6 +15,9 @@ import Shows from './routes/views/Shows'
 
 
 function App() {
+  useEffect(()=>{
+    document.title = 'ScreenSage'
+  },[])
   return (
     <>
       <div className='dark:bg-slate-950 min-h-screen dark:text-white'>

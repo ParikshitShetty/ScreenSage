@@ -13,7 +13,7 @@ const useSeriesFetch = (length) => {
         if(render.current){//useffect mounts and dismounts twice because of Strictmode so we need a condition
           render.current = false;
           for (let i = 0; i < length; i++) {
-            fetch(`http://www.omdbapi.com/?t=${tvShows[i]}&apikey=faa9a7ed`).
+            fetch(`${import.meta.env.VITE_TITLE}${tvShows[i]}&apikey=${import.meta.env.VITE_KEY}`).
               then((res)=>res.json()).
               then((respJson)=> setSeriesResults((prev)=>[
                 ...prev,respJson

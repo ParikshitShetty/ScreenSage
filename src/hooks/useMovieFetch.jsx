@@ -15,7 +15,7 @@ const useMovieFetch = (length) => {
         if (render.current) {
           render.current = false;
           for (let i = 0; i < length; i++) {
-            fetch(`http://www.omdbapi.com/?t=${movieList[i]}&apikey=faa9a7ed`).
+            fetch(`${import.meta.env.VITE_TITLE}${movieList[i]}&apikey=${import.meta.env.VITE_KEY}`).
               then((res)=>res.json()).
               then((respJson)=> setMovieResults((prev)=>[
                 ...prev,respJson

@@ -4,7 +4,7 @@ const useFetchById = (id) => {
     const [data, setData] = useState(null);
 
     useEffect(()=>{
-        fetch(`http://www.omdbapi.com/?i=${id}&apikey=faa9a7ed`).
+      fetch(`${import.meta.env.VITE_ID}${id}&apikey=${import.meta.env.VITE_KEY}`).
             then((res)=>res.json()).
             then((data) =>setData(data)).
             catch((err) => console.error(err));

@@ -12,7 +12,7 @@ const useAnimeFetch = (count) => {
         if(render.current){//useffect mounts and dismounts twice because of Strictmode so we need a condition
           render.current = false;
           for (let i = 0; i < count; i++) {
-            fetch(`http://www.omdbapi.com/?t=${anime[i]}&apikey=faa9a7ed`).
+            fetch(`${import.meta.env.VITE_TITLE}${anime[i]}&apikey=${import.meta.env.VITE_KEY}`).
               then((res)=>res.json()).
               then((respJson)=> setAnimeResults((prev)=>[
                 ...prev,respJson
