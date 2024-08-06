@@ -59,7 +59,8 @@ const Carousel = () => {
       {/* </div> */}
       
       {data.length > 2 &&
-      <div className='flex flex-col-reverse md:flex-row justify-evenly items-center pt-2 backdrop-brightness-100 bg-got'>
+      <div className='flex flex-col-reverse md:flex-row justify-evenly items-center pt-2 backdrop-brightness-100'>
+      {/* <div className='flex flex-col-reverse md:flex-row justify-evenly items-center pt-2 backdrop-brightness-100 bg-got'> */}
         <div className='flex flex-col justify-center items-center leading-6 md:items-start md:w-1/2 md:h-[100vh] mx-4 pb-7 md:pb-0'>
           <h1 className='font-bold md:text-6xl text-4xl md:mb-32 lg:-mt-2 text-center w-full'>{data[1].Title}</h1>
           <p className='font-semibold mb-10 line-clamp-6 md:line-clamp-none  text-justify leading-6'>{data[1].Plot}</p>

@@ -17,9 +17,9 @@ const NavBar = () => {
     <>
     <nav className="bg-white border-gray-200 bg-gradient-to-b dark:bg-neutral-950 h-20 opacity-70">
       <div className=" flex flex-row items-center justify-around ">
-          <div className="hidden md:block mx-4 my-4" id="navbar-default">
+          {/* <div className="hidden md:block mx-4 my-4" id="navbar-default">
               <Search/>
-          </div>
+          </div> */}
           <div className='flex justify-evenly items-center mx-4 my-4 '>
               {link.map((element,index)=>(
                 <li className='inline-flex text-lg cursor-pointer dark:text-gray-50 hover:text-blue-600 mx-4' key={index} onClick={()=>navigator(element.link)}>{element.name}</li>
