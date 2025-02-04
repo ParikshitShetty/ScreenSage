@@ -36,8 +36,8 @@ const Carousel = () => {
 
   return (
     <>
-     {/* <div className='width-[50rem] h-[90vh] overflow-hidden scroll-smooth z-10'>increase width to show content */}
-      {/* <AnimatePresence onExitComplete={true}>
+     {/* <div className='width-[50rem] h-[90vh] overflow-hidden scroll-smooth z-10'>increase width to show content
+      <AnimatePresence onExitComplete={true}>
         <motion.div className='flex flex-row' 
           initial={{x : '0%'}}
           animate={{x:'-100%',}}//increase this to show more image
@@ -55,8 +55,8 @@ const Carousel = () => {
                 <motion.img src={elem.Poster} key={index} id='image' className='mr-5 mt-5 rounded-xl z-10'/>
             ))}
           </motion.div>
-      </AnimatePresence> */}
-      {/* </div> */}
+      </AnimatePresence>
+      </div> */}
       
       {data.length > 2 &&
       <div className='flex flex-col-reverse md:flex-row justify-evenly items-center pt-2 backdrop-brightness-100'>

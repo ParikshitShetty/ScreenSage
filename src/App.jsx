@@ -15,9 +15,6 @@ import Shows from './routes/views/Shows'
 
 
 function App() {
-  useEffect(()=>{
-    document.title = 'ScreenSage'
-  },[])
   return (
     <>
       <div className='dark:bg-slate-950 min-h-screen dark:text-white'>
